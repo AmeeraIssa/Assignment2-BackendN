@@ -18,17 +18,11 @@ db.once('open', () => {
   console.log('Connected to MongoDB');
 });
 
-app.get('/', (req, res) => {
-  res.json({ message: 'Welcome to DressStore application.' });
-});
+// Routes
+const productRoutes = require('./routes/productRoutes');
+app.use('/api/products', productRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
-
-const productRoutes = require('./routes/productRoutes');
-app.use('/api', productRoutes);
-
-const categoryRoutes = require('./routes/categoryRoutes');
-app.use('/api', categoryRoutes);
